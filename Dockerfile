@@ -3,6 +3,9 @@ FROM php:8.3-apache
 COPY ./docker/php/ /usr/local/etc/php/
 COPY ./docker/apache/ /etc/apache2/sites-enabled/
 
+# composer
+COPY --from=composer:2.8.10 /usr/bin/composer /usr/bin/composer
+
 # db
 RUN apt-get update \
   && apt-get install -y zlib1g-dev mariadb-client vim libzip-dev \
