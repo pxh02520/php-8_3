@@ -5,6 +5,9 @@ COPY ./docker/apache/ /etc/apache2/sites-enabled/
 
 # composer
 COPY --from=composer:2.8.10 /usr/bin/composer /usr/bin/composer
+RUN mkdir -p /root/.config/composer
+COPY ./docker/public_key/composer.keys.dev.pub /root/.config/composer/keys.dev.pub
+COPY ./docker/public_key/composer.keys.tags.pub /root/.config/composer/keys.tags.pub
 
 # db
 RUN apt-get update \
